@@ -768,12 +768,14 @@ export default function App() {
   };
 
   const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: { position: "top" },
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: {
+      position: "top",
     },
-  };
-
+  },
+};
   const totalTasks = rawTasks.length;
   const completedCount = rawTasks.filter((t) => t.status === "completed").length;
   const avgProgress = totalTasks
@@ -1333,12 +1335,27 @@ export default function App() {
                 </div>
 
                 <div style={card({ padding: 20, marginBottom: 24 })}>
-                  <div style={{ fontWeight: 900, fontSize: 20, color: "#0f172a", marginBottom: 14 }}>
-                    Task Analytics
-                  </div>
-                  <Bar data={chartData} options={chartOptions} />
-                </div>
+  <div
+    style={{
+      fontWeight: 900,
+      fontSize: 20,
+      color: "#0f172a",
+      marginBottom: 14,
+    }}
+  >
+    Task Analytics
+  </div>
 
+  <div
+    style={{
+      width: "100%",
+      height: 320,
+      position: "relative",
+    }}
+  >
+    <Bar data={chartData} options={chartOptions} />
+  </div>
+</div>
                 {activeMeeting ? (
                   <>
                     <div
